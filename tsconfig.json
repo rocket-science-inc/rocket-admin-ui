@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": ["es5", "es6", "dom"],
+        "paths": {
+            "@modules/*": ["src/modules/*"]
+        },
+        "typeRoots": ["node_modules/@types"],
+        "types": ["node", "webpack", "angular", "angular-ui-router", "angular-material"]
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

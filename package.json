@@ -1,0 +1,32 @@
+{
+    "name": "rocket-admin-ui",
+    "version": "0.0.1",
+    "description": "Rocket Admin Web Application",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rocket-science-inc/rocket-admin-ui.git"
+    },
+    "keywords": [
+        "rocket",
+        "admin",
+        "dashboard"
+    ],
+    "author": "Rocket Science",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rocket-science-inc/rocket-admin-ui/issues"
+    },
+    "homepage": "https://github.com/rocket-science-inc/rocket-admin-ui#readme",
+    "dependencies": {
+        "@types/node": "^10.12.18",
+        "ts-loader": "^5.3.3",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.2.2",
+        "webfonts-loader": "^4.3.0",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.2.1",
+        "webpack-dev-server": "^3.1.14"
+    }
+}
