@@ -4,26 +4,32 @@ import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 
 
 const config: webpack.Configuration = {
-    entry: './src/bootstrap.ts',
+    entry: {
+        app: [
+            "./src/polyfills.ts",
+            "./src/app.bootstrap.ts"
+        ]
+    },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
-            "@modules": path.resolve(__dirname, 'src/modules')
+            "@modules": path.resolve(__dirname, 'src/modules'),
+            "@rocket-ui": path.resolve(__dirname, 'src/rocket')
         }
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'festua.bundle.js'
+        filename: '[name].bundle.js'
     },
     devServer: {
-        // host: "0.0.0.0",
-        proxy: {
-            '/api': 'http://localhost:3000'
-        },
+        host: "0.0.0.0",
+        // proxy: {
+        //     '/api': 'http://localhost:3000'
+        // },
         contentBase: path.join(__dirname, "/dist"),
         watchContentBase: true,
         port: 8080,
-        setup: (app) => {
+        before: (app) => {
             app.get('/', function(req, res) {
                 res.sendFile(path.join(__dirname, "index.html"));
             });
@@ -84,7 +90,7 @@ const config: webpack.Configuration = {
         }]
     },
     plugins: <any>[
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('[name].style.css')
     ]
 };
 

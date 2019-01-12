@@ -1,34 +1,19 @@
-// @types/angular": "^1.6.43",
-//         "@types/angular-material": "^1.1.58",
-//         "@types/angular-ui-router": "^1.1.40",
-//         "@types/webpack": "^4.1.2",
-//         "@uirouter/angularjs": "^1.0.15",
-//         "angular": "^1.6.9",
-//         "angular-animate": "^1.6.9",
-//         "angular-aria": "^1.6.9",
-//         "angular-breadcrumb": "^0.5.0",
-//         "angular-material": "^1.1.8",
-//         "angular-material-data-table": "^0.10.10",
-//         "angular-messages": "^1.6.9",
-//         "angular-sanitize": "^1.6.9",
-//         "angular-ts-decorators": "^3.3.1",
-//         "angular-ui-bootstrap": "^2.5.6",
-//         "awesome-typescript-loader": "^4.0.1",
-//         "bootstrap": "^4.0.0",
-//         "cross-env": "^5.1.4",
-//         "css-loader": "^0.28.11",
-//         "extract-text-webpack-plugin": "^4.0.0-beta.0",
-//         "file-loader": "^1.1.11",
-//         "html-loader": "^0.5.5",
-//         "material-design-icons": "^3.0.1",
-//         "ng-toast": "^2.0.0",
-//         "node-sass": "^4.5.0",
-//         "object-path": "^0.11.4",
-//         "sass-loader": "^6.0.7",
-//         "style-loader": "^0.20.3",
-//         "ts-loader": "^4.1.0",
-//         "ts-node": "^5.0.1",
-//         "typescript": "^2.7.1",
-//         "url-loader": "^1.0.1",
-//         "webfonts-loader": "^4.1.0",
-//         "webpack-stream": "^4.0.2"
+import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { RctShellModule, RctShell } from "@rocket-ui/shell";
+import { RctStylesModule } from "@rocket-ui/styles";
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        RctShellModule,
+        RctStylesModule
+    ],
+    bootstrap: [
+        RctShell
+    ]
+})
+class RctAdminApp {}
+
+platformBrowserDynamic().bootstrapModule(RctAdminApp);
