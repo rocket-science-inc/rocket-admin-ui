@@ -1,1 +1,16 @@
-<h1>Hello world!</h1>
+<mat-sidenav-container class="h-100">
+    <mat-sidenav #sidenav mode="side" [opened]="true" (opened)="events.push('open!')"
+                    (closed)="events.push('close!')">
+        Sidenav content
+    </mat-sidenav>
+
+    <mat-sidenav-content class="p-3 mh-100" style="overflow: auto">
+        <h1>qwe</h1>
+        <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
+        <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+        <p>Events:</p>
+        <div class="example-events">
+        <div *ngFor="let e of events">{{e}}</div>
+        </div> -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

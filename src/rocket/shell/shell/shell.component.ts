@@ -4,4 +4,6 @@ import { Component } from "@angular/core";
     selector: "rct-shell",
     template: require("./shell.component.html")
 })
-export class RctShell {}
+export class RctShell {
+
+}
