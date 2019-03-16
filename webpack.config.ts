@@ -1,20 +1,20 @@
 import * as path from "path";
 import * as webpack from "webpack";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
+import * as VueLoaderPlugin from "vue-loader/lib/plugin";
 
 
 const config: webpack.Configuration = {
     entry: {
         app: [
-            "./src/polyfills.ts",
-            "./src/app.bootstrap.ts"
+            "./src/bootstrap.ts"
         ]
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
-            "@modules": path.resolve(__dirname, 'src/modules'),
-            "@rocket-ui": path.resolve(__dirname, 'src/rocket')
+            "@": path.resolve(__dirname, 'src'),
+            "vue$": "vue/dist/vue.esm.js"
         }
     },
     output: {
@@ -23,15 +23,12 @@ const config: webpack.Configuration = {
     },
     devServer: {
         host: "0.0.0.0",
-        // proxy: {
-        //     '/api': 'http://localhost:3000'
-        // },
         contentBase: path.join(__dirname, "/dist"),
         watchContentBase: true,
         port: 8080,
         before: (app) => {
             app.get('/', function(req, res) {
-                res.sendFile(path.join(__dirname, "index.html"));
+                res.sendFile(path.join(__dirname, "public/index.html"));
             });
         }
     },
@@ -39,7 +36,10 @@ const config: webpack.Configuration = {
     devtool: "cheap-module-source-map",
     module: {
         rules: [{
-            test: /\.tsx?$/,
+            test: /\.vue$/,
+            loader: 'vue-loader'
+        }, {
+            test: /\.(ts|tsx?)$/,
             loader: "ts-loader"
         }, {
             test: /\.css$/,
@@ -90,6 +90,7 @@ const config: webpack.Configuration = {
         }]
     },
     plugins: <any>[
+        new VueLoaderPlugin(),
         new ExtractTextPlugin('[name].style.css')
     ]
 };

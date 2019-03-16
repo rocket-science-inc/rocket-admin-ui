@@ -11,8 +11,7 @@
         "emitDecoratorMetadata": true,
         "lib": ["es5", "es6", "dom"],
         "paths": {
-            "@modules/*": ["src/modules/*"],
-            "@rocket-ui/*": ["src/rocket/*"]
+            "@/*": ["src/*"]
         },
         "typeRoots": ["node_modules/@types"]
     },
