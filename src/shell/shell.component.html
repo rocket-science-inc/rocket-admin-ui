@@ -1,1 +1,13 @@
-<div>123</div>    
+<div class="page-container flex-fill d-flex">
+    <md-app md-waterfall md-mode="fixed-last" class="flex-fill">
+        <md-app-toolbar class="md-large md-dense md-primary">
+            <ShellHeader :toggle="toggle"></ShellHeader>
+        </md-app-toolbar>
+        <md-app-drawer :md-active.sync="drawer">
+            <ShellDrawer :toggle="toggle"></ShellDrawer>
+        </md-app-drawer>
+        <md-app-content>
+            <router-view></router-view>
+        </md-app-content>
+    </md-app>
+</div>

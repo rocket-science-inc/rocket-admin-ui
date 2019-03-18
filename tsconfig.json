@@ -11,7 +11,8 @@
         "emitDecoratorMetadata": true,
         "lib": ["es5", "es6", "dom"],
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "@plugins/*": ["src/plugins/*"]
         },
         "typeRoots": ["node_modules/@types"]
     },

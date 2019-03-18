@@ -13,7 +13,8 @@ const config: webpack.Configuration = {
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
-            "@": path.resolve(__dirname, 'src'),
+            "@": path.resolve(__dirname, "src"),
+            "@plugins": path.resolve(__dirname, "src/plugins"),
             "vue$": "vue/dist/vue.esm.js"
         }
     },
@@ -64,7 +65,8 @@ const config: webpack.Configuration = {
             use: [{
                 loader: 'html-loader',
                 options: {
-                    minimize: true
+                    minimize: true,
+                    caseSensitive: true
                 }
             }]
         }, {
@@ -91,7 +93,7 @@ const config: webpack.Configuration = {
     },
     plugins: <any>[
         new VueLoaderPlugin(),
-        new ExtractTextPlugin('[name].style.css')
+        new ExtractTextPlugin('[name].styles.css')
     ]
 };
 
