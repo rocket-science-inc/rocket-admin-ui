@@ -14,7 +14,7 @@ const config: webpack.Configuration = {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
             "@": path.resolve(__dirname, "src"),
-            "@plugins": path.resolve(__dirname, "src/plugins"),
+            "@rocket": path.resolve(__dirname, "src/rocket"),
             "vue$": "vue/dist/vue.esm.js"
         }
     },

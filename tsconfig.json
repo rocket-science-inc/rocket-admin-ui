@@ -12,7 +12,7 @@
         "lib": ["es5", "es6", "dom"],
         "paths": {
             "@/*": ["src/*"],
-            "@plugins/*": ["src/plugins/*"]
+            "@rocket/*": ["src/rocket/*"]
         },
         "typeRoots": ["node_modules/@types"]
     },

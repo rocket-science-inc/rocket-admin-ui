@@ -5,7 +5,7 @@ const styles = require("./styles.scss");
 
 Vue.use(VueMaterial)
 
-export class UiPlugin {
+export class RctUiPlugin {
 
     public static install():void {
     }
