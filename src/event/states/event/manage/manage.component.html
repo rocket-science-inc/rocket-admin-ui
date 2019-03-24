@@ -1,0 +1,41 @@
+<md-content class="pt-3">
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item">
+            {{model.title}}
+            <rct-form-text
+                label="Title"
+                v-model="model.title"
+            />
+        </div>
+        <div class="md-layout-item">
+            <rct-form-autocomplete
+                label="Organizer"
+                :options="organizers"
+                no-data-msg="No users found"
+            />
+        </div>
+    </div>
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item">
+            <rct-form-datetime-picker
+                v-model="model.startDate"
+                label="Start Date and Time"
+            />
+        </div>
+        <div class="md-layout-item">
+            <rct-form-datetime-picker
+                v-model="model.endDate"
+                label="End Date and Time"
+            />
+        </div>
+    </div>
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item">
+            {{model.description}}
+            <rct-form-textarea
+                v-model="model.description"
+                label="Description"
+            />
+        </div>
+    </div>
+</md-content>

@@ -1,7 +1,7 @@
 export const RctBaseTemplate = (input:string):string => {
     return `
         <md-field>
-            <label :for="id">{{label}}</label>
+            <label >{{label}}</label>
             ${input}
         </md-field>
     `;
@@ -10,9 +10,36 @@ export const RctBaseTemplate = (input:string):string => {
 export const RctInputTemplate = (type:string):string => {
     return `
         <md-input
+            v-model="value"
             type="${type}"
             :name="id"
             :disabled="disabled"
+            @input="changed"
+            @change="changed"
         />
     `;
-}
+};
+
+export const RctTextareaTemplate = ():string => {
+    return `
+        <md-textarea
+            md-autogrow
+            :name="id"
+            v-model="value"
+            @input="changed"
+            :rows="5"
+        />
+    `;
+};
+
+export const RctDatetimepickerTemplate = ():string => {
+    return `
+        <md-datepicker
+            v-model="value"
+            md-immediately
+            :name="id"
+        >
+            <label :for="id">{{label}}</label>
+        </md-datepicker>
+    `;
+};

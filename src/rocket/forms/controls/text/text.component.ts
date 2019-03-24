@@ -1,4 +1,4 @@
-import { Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { RctFormControl } from "./../base";
 import { RctBaseTemplate, RctInputTemplate } from "./../templates";
 
@@ -7,7 +7,7 @@ import { RctBaseTemplate, RctInputTemplate } from "./../templates";
         RctInputTemplate("text")
     )
 })
-export class RctFormText extends RctFormControl {
+export class RctFormText extends Mixins(RctFormControl) {
 
     public type: string = "text";
 
