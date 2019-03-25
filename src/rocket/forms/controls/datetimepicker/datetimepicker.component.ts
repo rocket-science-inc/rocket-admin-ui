@@ -12,6 +12,10 @@ export class RctFormDatetimePicker extends Mixins(RctFormControl) {
     @Watch("value")
     public watch(oldVal, newVal):void {
         if (newVal) this.$emit("model", new Date(this.value).getTime());
-    }
+    };
+
+    public formatter():any {
+        return this.model ? new Date(this.model) : null;
+    };
 
 }

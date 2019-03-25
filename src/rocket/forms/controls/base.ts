@@ -12,13 +12,26 @@ export class RctFormControl extends Vue {
     public value: any = null;
     public type: string = "control";
 
+    @Emit("model")
+    public changed():void {
+        return this.value
+    };
+
+    @Watch("model")
+    public setvalue():void {
+        this.value = this.formatter();
+    };
+
     public get id():string {
         return `rct-form-${this.type}-${kebabCase(this.label)}`;
     };
 
-    @Emit("model")
-    public changed():void {
-        return this.value
+    public formatter():any {
+        return this.model
+    };
+
+    public mounted():void {
+        this.value = this.formatter();
     };
 
 };

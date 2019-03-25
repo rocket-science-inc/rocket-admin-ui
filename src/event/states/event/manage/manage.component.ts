@@ -6,12 +6,7 @@ import * as faker from "faker";
 })
 export class EventManagePage extends Vue {
 
-    public model: any = {
-        title: "Title",
-        description: "Description",
-        startDate: Date.now(),
-        endDate: Date.now()
-    };
+    public model: any = {};
 
     private options: any[] = new Array(20).fill(0).map(() => {
         return { name: faker.name.findName() }
@@ -21,4 +16,4 @@ export class EventManagePage extends Vue {
         return Promise.resolve(this.options)
     };
 
-}
+};
