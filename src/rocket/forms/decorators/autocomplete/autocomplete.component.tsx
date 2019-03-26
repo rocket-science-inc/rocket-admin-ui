@@ -1,18 +1,18 @@
 import { Component, Mixins, Vue } from "vue-property-decorator";
 import { CoolSelect } from "vue-cool-select";
 
-// @Component
-// class Autocomplete extends Mixins(CoolSelect) {}
 
 @Component({
-    template: require("./autocomplete.component.html")
-})
-class Template extends Vue {}
-
-@Component({
-    render: () => {
+    render: (h) => {
         return (
-            <div></div>
+            <div>
+                <div>
+                    <md-field>
+                        <label>{this.placeholder}</label>
+                        <md-input></md-input>
+                    </md-field>
+                </div>
+            </div>
         )
     }
 })

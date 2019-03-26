@@ -9,19 +9,19 @@ import { Autocomplete } from "./../../decorators/autocomplete/autocomplete.compo
 })
 export class RctFormAutocomplete extends Mixins(RctFormControl) {
 
-    @Prop() options: (q:string) => Promise<any[]>;
-    @Prop(String) noDataMsg: string;
+    // @Prop() options: (q:string) => Promise<any[]>;
+    // @Prop(String) noDataMsg: string;
 
     public type: string = "autocomplete";
-    public lookup: any[] = [];
-    public value: string = "123";
+    // public lookup: any[] = [];
+    // public value: string = "123";
 
-    public update(e):void {
-        this.options(this.value).then(lookup => {
-            this.lookup = lookup.map(item => {
-                return {...item, toLowerCase: () => item.name.toLowerCase()}
-            });
-        })
-    };
+    // public update(e):void {
+    //     this.options(this.value).then(lookup => {
+    //         this.lookup = lookup.map(item => {
+    //             return {...item, toLowerCase: () => item.name.toLowerCase()}
+    //         });
+    //     })
+    // };
 
 }

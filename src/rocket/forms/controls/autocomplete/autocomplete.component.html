@@ -1,19 +1,4 @@
-<!-- <md-autocomplete
-    v-model="value"
-    :md-options="lookup"
-    @md-changed="update"
-    @md-opened="update"
-    @md-selected="changed"
->
-    <label>{{label}}</label>
-    <template
-        slot="md-autocomplete-item"
-        slot-scope="{ item }"
-    >{{ item.name }}</template>
-    <template
-        slot="md-autocomplete-empty"
-    >
-        {{noDataMsg}}
-    </template>
-</md-autocomplete> -->
-<autocomplete :items="[]"></autocomplete>
+<autocomplete
+    :placeholder="label"
+    :items="[]"
+></autocomplete>

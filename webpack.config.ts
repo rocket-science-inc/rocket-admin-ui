@@ -2,7 +2,6 @@ import * as path from "path";
 import * as webpack from "webpack";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import * as VueLoaderPlugin from "vue-loader/lib/plugin";
-import { FuseBox, BabelPlugin, WebIndexPlugin } from "fuse-box";
 
 
 const config: webpack.Configuration = {
@@ -38,10 +37,17 @@ const config: webpack.Configuration = {
     devtool: "cheap-module-source-map",
     module: {
         rules: [{
-            test: /\.vue$/,
-            loader: 'vue-loader'
+            test: /\.tsx$/,
+            use: [{
+                loader: "babel-loader",
+                options: {
+                    presets: ["@vue/babel-preset-jsx"]
+                }
+            }, {
+                loader: "ts-loader"
+            }]
         }, {
-            test: /\.(ts|tsx?)$/,
+            test: /\.ts$/,
             loader: "ts-loader"
         }, {
             test: /\.css$/,
@@ -93,14 +99,7 @@ const config: webpack.Configuration = {
         }]
     },
     plugins: <any>[
-        new VueLoaderPlugin(),
-        new ExtractTextPlugin('[name].styles.css'),
-        BabelPlugin({
-            config: {
-                presets: ['latest'],
-                plugins: ['jsx-v-model', 'transform-vue-jsx']
-            }
-        })
+        new ExtractTextPlugin('[name].styles.css')
     ]
 };
 
