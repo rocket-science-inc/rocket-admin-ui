@@ -13,6 +13,7 @@ export class RctFormAutocomplete extends Mixins(RctFormControl) {
     // @Prop(String) noDataMsg: string;
 
     public type: string = "autocomplete";
+    public loading: boolean = false;
     // public lookup: any[] = [];
     // public value: string = "123";
 

@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import * as faker from "faker";
+import { RctApi } from "@rocket/api";
 
 @Component({
     template: require("./manage.component.html")
@@ -8,12 +9,8 @@ export class EventManagePage extends Vue {
 
     public model: any = {};
 
-    private options: any[] = new Array(20).fill(0).map(() => {
-        return { name: faker.name.findName() }
-    });
-
     public organizers(q:string):Promise<any[]> {
-        return Promise.resolve(this.options)
+        return RctApi.google.places({ q })
     };
 
 };

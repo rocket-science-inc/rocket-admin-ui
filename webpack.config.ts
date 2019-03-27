@@ -3,6 +3,7 @@ import * as webpack from "webpack";
 import * as ExtractTextPlugin from "extract-text-webpack-plugin";
 import * as VueLoaderPlugin from "vue-loader/lib/plugin";
 
+const env = require("./env.config.json");
 
 const config: webpack.Configuration = {
     entry: {
@@ -11,7 +12,7 @@ const config: webpack.Configuration = {
         ]
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: [".ts", ".tsx", ".js", ".vue"],
         alias: {
             "@": path.resolve(__dirname, "src"),
             "@rocket": path.resolve(__dirname, "src/rocket"),
@@ -49,6 +50,9 @@ const config: webpack.Configuration = {
         }, {
             test: /\.ts$/,
             loader: "ts-loader"
+        }, {
+            test: /\.vue$/,
+            loader: 'vue-loader'
         }, {
             test: /\.css$/,
             use: (<any>ExtractTextPlugin).extract({
@@ -99,7 +103,14 @@ const config: webpack.Configuration = {
         }]
     },
     plugins: <any>[
-        new ExtractTextPlugin('[name].styles.css')
+        new ExtractTextPlugin('[name].styles.css'),
+        new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify({
+                ...env,
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            })
+        })
     ]
 };
 

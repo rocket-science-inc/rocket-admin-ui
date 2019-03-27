@@ -16,6 +16,14 @@
     </div>
     <div class="md-layout md-gutter">
         <div class="md-layout-item">
+            <rct-form-autocomplete
+                v-model="model.location"
+                label="Location"
+            />
+        </div>
+    </div>
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item">
             <rct-form-datetime-picker
                 v-model="model.startDate"
                 label="Start Date and Time"
