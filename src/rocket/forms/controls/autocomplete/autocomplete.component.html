@@ -1,5 +1,15 @@
 <autocomplete
+    v-model="value"
     :placeholder="label"
-    :items="[]"
+    :items="lookup"
     :loading="loading"
-></autocomplete>
+    :item-text="optLabel"
+    :item-value="optValue"
+    :disableFilteringBySearch="true"
+    @search="search"
+    @select="changed"
+>
+    <template slot="item" slot-scope="{item}">
+        <slot name="option" :option="item"></slot>
+    </template>
+</autocomplete>

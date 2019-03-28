@@ -8,10 +8,16 @@
         </div>
         <div class="md-layout-item">
             <rct-form-autocomplete
+                v-model="model.organizer"
                 label="Organizer"
                 :options="organizers"
-                no-data-msg="No users found"
-            />
+                opt-label="name"
+                opt-value="id"
+            >
+                <template slot="option" slot-scope="{option}">
+                    {{option.name}}
+                </template>
+            </rct-form-autocomplete>
         </div>
     </div>
     <div class="md-layout md-gutter">

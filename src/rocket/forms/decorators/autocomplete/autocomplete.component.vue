@@ -37,7 +37,7 @@
             class="md-field md-autocomplete md-theme-default md-clearable"
             :class="{'md-focused': focused || inputValue}"
         >
-            <div class="md-menu" ref="IZ-select__input">
+            <div class="md-menu position-relative" ref="IZ-select__input">
                 <input type="text" role="combobox" class="md-input"
                     ref="IZ-select__input-for-text"
                     v-bind="inputElCustomAttributes"
@@ -48,6 +48,14 @@
                     @input="onSearch"
                     autocomplete="off"
                 />
+                <md-progress-spinner
+                    v-if="loading"
+                    class="position-absolute"
+                    style="right: 0; top: 50%; margin-top: -10px"
+                    :md-diameter="20"
+                    :md-stroke="3"
+                    md-mode="indeterminate"
+                ></md-progress-spinner>
             </div>
             <label>{{placeholder}}</label>
         </div>
@@ -65,7 +73,7 @@
 
                 <div ref="IZ-select__menu-items" @scroll="onScroll"
                     :style="{'max-height': menuItemsMaxHeight}"
-                    class="md-menu-content-container md-scrollbar"
+                    class="md-menu-content-container md-scrollbar md-theme-default"
                 >
 
                     <slot name="before-items"></slot>

@@ -10,7 +10,13 @@ export class EventManagePage extends Vue {
     public model: any = {};
 
     public organizers(q:string):Promise<any[]> {
-        return RctApi.google.places({ q })
+        return Promise.resolve(
+            new Array(20).fill(0).map(() => ({
+                name: faker.address.streetAddress(),
+                id: faker.random.uuid()
+            }))
+        )
+        //return RctApi.google.places({ q })
     };
 
 };
