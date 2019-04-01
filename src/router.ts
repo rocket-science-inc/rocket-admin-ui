@@ -4,7 +4,6 @@ import VueRouter, { RouteConfig } from "vue-router";
 import { DashboardRoutes } from "./dashboard/dashboard.routes";
 import { EventRoutes } from "./event/event.routes";
 import { UserRoutes } from "./user/user.routes";
-import { OrganizersRoutes } from "./organizer/organizer.routes";
 
 Vue.use(VueRouter);
 
@@ -18,7 +17,6 @@ export const router = new VueRouter({
         ...GlobalRoutes,
         ...DashboardRoutes,
         ...EventRoutes,
-        ...UserRoutes,
-        ...OrganizersRoutes
+        ...UserRoutes
     ]
 })
