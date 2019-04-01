@@ -27,7 +27,7 @@ const config: webpack.Configuration = {
         host: "0.0.0.0",
         contentBase: path.join(__dirname, "/dist"),
         watchContentBase: true,
-        port: 8080,
+        // port: 8080,
         before: (app) => {
             app.get('/', function(req, res) {
                 res.sendFile(path.join(__dirname, "public/index.html"));
