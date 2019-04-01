@@ -1,7 +1,7 @@
 <template>
     <div class="position-relative">
         <div class="position-fixed"
-            style="left: 0; right: 0; top: 0; bottom: 0;"
+            style="left: 0; right: 0; top: 0; bottom: 0; z-index: 99;"
             v-if="showDropdown"
             @click.stop="toggleDropdown"
         ></div>
@@ -21,7 +21,7 @@
         >
             <md-icon>close</md-icon>
         </md-button>
-        <div v-show="showDropdown" style="top: 54px"
+        <div v-show="showDropdown" style="top: 54px; z-index: 100;"
             class="md-menu-content md-theme-default position-absolute md-menu-content-small">
             <div class="md-menu-content-container md-theme-default">
                 <div style="max-height: 172px" class="md-list md-theme-default d-flex flex-nowrap flex-row p-0">
