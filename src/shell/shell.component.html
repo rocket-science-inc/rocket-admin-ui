@@ -3,7 +3,7 @@
         <md-app-toolbar class="md-large md-dense md-primary">
             <ShellHeader :toggle="toggle"></ShellHeader>
         </md-app-toolbar>
-        <md-app-drawer :md-active.sync="drawer">
+        <md-app-drawer :md-active.sync="drawer" style="max-width: 280px">
             <ShellDrawer :toggle="toggle"></ShellDrawer>
         </md-app-drawer>
         <md-app-content>

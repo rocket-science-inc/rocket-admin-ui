@@ -7,7 +7,6 @@ Vue.use(VueMaterial)
 
 export class RctUiPlugin {
 
-    public static install():void {
-    }
+    public static install():void {}
 
 };
