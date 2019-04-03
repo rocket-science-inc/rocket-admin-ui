@@ -7,7 +7,9 @@ import { RctApi } from "@rocket/api";
 })
 export class EventManagePage extends Vue {
 
-    public model: any = {};
+    public model: any = {
+        agenda: { [Date.now()]: {} }
+    };
 
     public organizers(q:string):Promise<any[]> {
         return Promise.resolve(
@@ -17,6 +19,24 @@ export class EventManagePage extends Vue {
             }))
         )
         //return RctApi.google.places({ q })
+    };
+
+    public remove(item:string):void {
+        this.model.agenda = Object.keys(this.model.agenda)
+            .reduce((res, key) => {
+                if (key != item) {
+                    return {...res, [key]: this.model.agenda}
+                }; return res;
+            }, {});
+    };
+
+    public add():void {
+        ((key) => {
+            this.model.agenda = {
+                ...this.model.agenda,
+                [key]: {}
+            };
+        })(Date.now())
     };
 
 };

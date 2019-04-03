@@ -1,0 +1,13 @@
+$styles: dashed;
+@each $style in $styles {
+    .border-#{$style} {
+        border-style: $style !important;
+    }
+};
+
+$widthes: 1, 2, 3, 4, 5;
+@each $width in $widthes {
+    .border-#{$width} {
+        border-width: #{$width}px !important;
+    }
+};

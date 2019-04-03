@@ -1,0 +1,15 @@
+$positions: 0, 1;
+@each $position in $positions {
+    .top-#{$position} {
+        top: #{$position}em !important;
+    }
+    .bottom-#{$position} {
+        bottom: #{$position}em !important;
+    }
+    .right-#{$position} {
+        right: #{$position}em !important;
+    }
+    .left-#{$position} {
+        left: #{$position}em !important;
+    }
+};
