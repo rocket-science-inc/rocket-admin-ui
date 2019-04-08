@@ -1,10 +1,10 @@
 <md-content class="pt-3">
-    <md-steppers md-vertical md-active-step="agenda">
+    <md-steppers md-vertical>
         <md-step id="details" md-label="Details"
             md-description="Event details: Poster, Title, Description, etc."
         >
             <div class="md-layout md-gutter pt-3">
-                <div class="md-layout-item" style="flex: 0 0 260px">
+                <div class="md-layout-item" style="flex: 0 0 260px; max-width: 260px;">
                     <rct-form-img
                         label="Poster"
                         v-model="model.poster"
