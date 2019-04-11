@@ -1,5 +1,4 @@
 import { Component, Vue } from "vue-property-decorator";
-import * as faker from "faker";
 import { RctApi } from "@rocket/api";
 
 @Component({
@@ -7,36 +6,40 @@ import { RctApi } from "@rocket/api";
 })
 export class EventManagePage extends Vue {
 
-    public model: any = {
-        agenda: { [Date.now()]: {} }
+    public model():Promise<any> {
+        return Promise.resolve({
+            agenda: { [Date.now()]: {} }
+        });
     };
 
     public organizers(q:string):Promise<any[]> {
-        return Promise.resolve(
-            new Array(20).fill(0).map(() => ({
-                name: faker.address.streetAddress(),
-                id: faker.random.uuid()
-            }))
-        )
-        //return RctApi.google.places({ q })
+        return RctApi.user.find({ q })
     };
 
-    public remove(item:string):void {
-        this.model.agenda = Object.keys(this.model.agenda)
+    public places(q:string):Promise<any[]> {
+        return RctApi.google.places({ q })
+    };
+
+    public remove(model: any, item:string):void {
+        model.agenda = Object.keys(model.agenda)
             .reduce((res, key) => {
                 if (key != item) {
-                    return {...res, [key]: this.model.agenda}
+                    return {...res, [key]: model.agenda}
                 }; return res;
             }, {});
     };
 
-    public add():void {
+    public add(model:any):void {
         ((key) => {
-            this.model.agenda = {
-                ...this.model.agenda,
+            model.agenda = {
+                ...model.agenda,
                 [key]: {}
             };
         })(Date.now())
+    };
+
+    public save(model):void {
+
     };
 
 };

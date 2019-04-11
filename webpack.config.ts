@@ -27,7 +27,9 @@ const config: webpack.Configuration = {
         host: "0.0.0.0",
         contentBase: path.join(__dirname, "/dist"),
         watchContentBase: true,
-        // port: 8080,
+        proxy: {
+            "/graphql": "http://roqet-server.us-east-2.elasticbeanstalk.com"
+        },
         before: (app) => {
             app.get('/', function(req, res) {
                 res.sendFile(path.join(__dirname, "public/index.html"));

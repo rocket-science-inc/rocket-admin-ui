@@ -1,5 +1,6 @@
-import { Component, Prop, Emit, Mixins } from "vue-property-decorator";
-import { CoolSelect } from 'vue-cool-select';
+import { Component, Prop, Watch, Mixins, Emit } from "vue-property-decorator";
+// import Debounce from "debounce-decorator"
+import * as debounce from "lodash/debounce";
 import { RctFormControl } from "./../base";
 import { Autocomplete } from "./../../decorators/autocomplete/autocomplete.component";
 
@@ -9,20 +10,72 @@ import { Autocomplete } from "./../../decorators/autocomplete/autocomplete.compo
 })
 export class RctFormAutocomplete extends Mixins(RctFormControl) {
 
-    @Prop() options: (q:string) => Promise<any[]>;
-    @Prop() optLabel: string;
-    @Prop() optValue: string;
+    @Prop() options: (q:string, init?: boolean) => Promise<any[]>;
+    @Prop({default: "id"}) optValue: string;
+    @Prop({default: "title"}) optLabel: string;
+    @Prop({default: "string"}) format: any;
 
     public type: string = "autocomplete";
     public loading: boolean = false;
     public lookup: any[] = [];
 
-    public search(query):void {
+    @Emit("model")
+    public changed():any {
+        if (this.format == "object") {
+            return this.lookup.find(option => {
+                return option[this.optValue] == this.value
+            })
+        } else {
+            return this.value;
+        }
+    };
+
+    // @Watch("model")
+    // public setvalue():void {
+    //     this.value = this.formatter();
+    //     if (typeof(this.model) == "object") {
+    //         console.log(123)
+    //         this.lookup = [this.model];
+    //     }
+    // };
+
+    public formatter():any {
+        if (typeof(this.model) == "object") {
+            return (this.model || {})[this.optValue];
+        } else {
+            return this.model
+        };
+    };
+
+    public search():void {};
+
+    public created():void {
+        this.search = debounce((query) => {
+            this.loading = true;
+            this.options(query).then(lookup => {
+                this.lookup = lookup;
+                this.loading = false;
+            });
+        }, 300);
+    };
+
+    public mounted():void {
+        this.value = this.formatter();
         this.loading = true;
-        this.options(query).then(lookup => {
+        this.defopts().then(lookup => {
             this.lookup = lookup;
             this.loading = false;
         });
     };
 
-}
+    private defopts():Promise<any[]> {
+        if (this.model && typeof(this.model) == "object") {
+            return Promise.resolve([this.model])
+        } else if (this.model) {
+            return this.options(this.model, true);
+        } else {
+            return Promise.resolve([]);
+        }
+    };
+
+};

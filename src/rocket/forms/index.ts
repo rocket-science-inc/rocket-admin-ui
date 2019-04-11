@@ -1,6 +1,7 @@
 import Vue from "vue";
 import * as kebabCase from "lodash/kebabCase";
 import * as Controls from "./controls";
+import { RctForm } from "./form/form.component";
 
 const controls = require.context('./controls', false, /RctForm[A-Z]\w+\.(ts)$/);
 
@@ -12,6 +13,7 @@ export class RctFormsPlugin {
         }).forEach(({ component, name }) => {
             Vue.component(name, component)
         });
+        Vue.component("rct-form", RctForm);
     };
 
 };
