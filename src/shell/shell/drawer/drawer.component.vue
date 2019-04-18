@@ -2,7 +2,7 @@
     <div>
     <!-- <md-app-drawer :md-active.sync="drawer" style="max-width: 280px"> -->
         <md-toolbar class="md-transparent" md-elevation="0">
-            <div class="md-title">Rocket Admin</div>
+            <div class="md-title">Roqet Admin</div>
         </md-toolbar>
         
         <md-list>

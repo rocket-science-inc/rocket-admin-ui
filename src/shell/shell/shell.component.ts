@@ -15,9 +15,9 @@ export class Shell extends Vue {
         this.drawer = !this.drawer;
     };
 
-    public get hasNavigation():boolean {
-        console.log(123)
-        return !!ShellService.getRootNavigation(this.$route).children
+    public get mh():string {
+        console.log((<any>document).offsetHeight)
+        return (<any>document).offsetHeight + "px"
     };
 
 };

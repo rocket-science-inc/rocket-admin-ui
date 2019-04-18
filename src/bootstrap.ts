@@ -16,7 +16,7 @@ Vue.use(RctShellPlugin, {
     }, {
         anchor: "Events",
         icon: "date_range",
-        state: { name: "events.all" },
+        state: { name: "events" },
         children: [{
             anchor: "Events",
             state: { name: "events.all" },

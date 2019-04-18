@@ -28,7 +28,7 @@ const config: webpack.Configuration = {
         contentBase: path.join(__dirname, "/dist"),
         watchContentBase: true,
         proxy: {
-            "/graphql": "http://roqet-server.us-east-2.elasticbeanstalk.com"
+            "/graphql": "http://roqet-prod.us-east-2.elasticbeanstalk.com"
         },
         before: (app) => {
             app.get('/', function(req, res) {

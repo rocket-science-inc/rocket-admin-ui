@@ -19,32 +19,27 @@ export class RctFormAutocomplete extends Mixins(RctFormControl) {
     public loading: boolean = false;
     public lookup: any[] = [];
 
-    @Emit("model")
-    public changed():any {
-        if (this.format == "object") {
-            return this.lookup.find(option => {
-                return option[this.optValue] == this.value
-            })
-        } else {
-            return this.value;
-        }
-    };
-
-    // @Watch("model")
-    // public setvalue():void {
-    //     this.value = this.formatter();
-    //     if (typeof(this.model) == "object") {
-    //         console.log(123)
-    //         this.lookup = [this.model];
+    // @Emit("model")
+    // public changed():any {
+    //     if (this.format == "object") {
+    //         return this.lookup.find(option => {
+    //             return option[this.optValue] == this.value
+    //         })
+    //     } else {
+    //         return this.value;
     //     }
     // };
 
-    public formatter():any {
-        if (typeof(this.model) == "object") {
-            return (this.model || {})[this.optValue];
-        } else {
-            return this.model
+    @Watch("model")
+    public setvalue():void {
+        if (!this.value) {
+            this.loading = true;
+            this.defopts().then(lookup => {
+                this.lookup = lookup;
+                this.loading = false;
+            });
         };
+        this.value = this.formatter();
     };
 
     public search():void {};
@@ -69,9 +64,7 @@ export class RctFormAutocomplete extends Mixins(RctFormControl) {
     };
 
     private defopts():Promise<any[]> {
-        if (this.model && typeof(this.model) == "object") {
-            return Promise.resolve([this.model])
-        } else if (this.model) {
+        if (this.model) {
             return this.options(this.model, true);
         } else {
             return Promise.resolve([]);

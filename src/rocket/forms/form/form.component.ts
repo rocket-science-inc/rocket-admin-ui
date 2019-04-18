@@ -5,6 +5,7 @@ import RctFormTpl from "./form.component.vue";
 export class RctForm extends Mixins(RctFormTpl) {
 
     @Prop({ default: false }) static: boolean;
+    @Prop({ default: "" }) title: string;
     @Prop({ default: () => Promise.resolve({}) }) model: () => Promise<any>;
     @Prop({ default: () => Promise.resolve({}) }) save: (model:any) => Promise<any>;
 
@@ -12,8 +13,7 @@ export class RctForm extends Mixins(RctFormTpl) {
     public form: any = {};
 
     public onSave():void {
-        console.log(this.form)
-        //this.save(this.form);
+        this.save(this.form);
     };
 
     public mounted():void {

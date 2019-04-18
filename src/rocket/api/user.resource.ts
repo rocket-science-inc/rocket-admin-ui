@@ -1,14 +1,18 @@
 import { jsonToGraphQLQuery } from "json-to-graphql-query";
 import { Graph } from "./base.resource";
-import { FindUserQuery } from "./default.queries";
+import { FindUserQuery, GetUserQuery } from "./default.queries";
 
-interface IPlacesParams {
+interface IFindParams {
     q: string
+};
+
+interface IGetParams {
+    id: number
 };
 
 export class UserResource {
 
-    public find({ q }:IPlacesParams, fields:any = FindUserQuery):Promise<any[]> {
+    public find({ q }:IFindParams, fields:any = FindUserQuery):Promise<any[]> {
         return Graph.post("", {
             query: jsonToGraphQLQuery({
                 query: {
@@ -22,6 +26,19 @@ export class UserResource {
                 }
             })
         }).then(({data}) => data.data.users || [])
+    };
+
+    public get({ id }:IGetParams, fields: any = GetUserQuery):Promise<any> {
+        return Graph.post("", {
+            query: jsonToGraphQLQuery({
+                query: {
+                    user: {
+                        ...fields,
+                        __args: { id }
+                    }
+                }
+            })
+        }).then(({data}) => data.data.user || [])
     };
 
 };

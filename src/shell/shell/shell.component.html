@@ -1,6 +1,6 @@
-<div class="page-container flex-fill d-flex">
-    <md-app md-waterfall md-mode="fixed-last" class="flex-fill">
-        <md-app-toolbar class="md-dense md-primary md-large" md-mode="fixed-last">
+<div class="page-container flex-fill">
+    <md-app md-waterfall md-mode="fixed" style="height: 100vh">
+        <md-app-toolbar class="md-primary md-dense">
             <ShellHeader :toggle="toggle"></ShellHeader>
         </md-app-toolbar>
         <md-app-drawer :md-active.sync="drawer" style="max-width: 280px">

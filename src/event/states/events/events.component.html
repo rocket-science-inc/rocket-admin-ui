@@ -1,8 +1,11 @@
-<md-content class="pt-3">
-    <md-toolbar md-elevation="0" class="md-dense">
-        <div class="flex-fill"></div>
+<md-content>
+    <div class="d-flex align-items-center">
+        <div class="flex-fill md-display-1">Events</div>
         <div class="flex-shrink-0">
-            <md-button :to="{name: 'event.create'}" class="md-primary">Create</md-button>
+            <md-button
+                :to="{name: 'createEvent'}"
+                class="md-primary md-raised"
+            >Create</md-button>
         </div>
-    </md-toolbar>
+    </div>
 </md-content>
