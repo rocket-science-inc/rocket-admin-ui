@@ -1,6 +1,6 @@
 import { GoogleResource } from "./google.resource";
 import { UserResource } from "./user.resource";
-import { EventResource } from "./event.resource";
+import { EventResource } from "./event/event.resource";
 
 
 class Api {

@@ -1,13 +1,14 @@
 import Vue from "vue";
-import { RctUiPlugin } from "@rocket/ui";
 import { RctFormsPlugin } from "@rocket/forms";
 import { RctShellPlugin, Shell } from "@/shell";
+import { RctEventPlugin } from "@/event";
 
 import { store } from "./store";
 import { router } from "./router";
 
-Vue.use(RctUiPlugin)
 Vue.use(RctFormsPlugin);
+Vue.use(RctEventPlugin);
+
 Vue.use(RctShellPlugin, {
     navigation: [{
         anchor: "Dashboard",

@@ -1,6 +1,6 @@
 <template>
     <div>
-    <!-- <md-app-drawer :md-active.sync="drawer" style="max-width: 280px"> -->
+
         <md-toolbar class="md-transparent" md-elevation="0">
             <div class="md-title">Roqet Admin</div>
         </md-toolbar>
@@ -15,5 +15,5 @@
             </md-list-item>
         </md-list>
     </div>
-    <!-- </md-app-drawer> -->
+
 </template>

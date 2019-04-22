@@ -11,7 +11,7 @@ export const EventRoutes:RouteConfig[] = [{
     component: EventsPage,
     meta: { root: "events.all" }
 }, {
-    path: "/event",
+    path: "/event/:id",
     name: "event",
     component: EventPage,
     meta: { root: "events.all" }

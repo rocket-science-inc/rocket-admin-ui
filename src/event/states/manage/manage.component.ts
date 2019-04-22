@@ -1,10 +1,9 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Mixins } from "vue-property-decorator";
 import { RctApi } from "@rocket/api";
+import EventManagePageTpl from "./manage.component.vue";
 
-@Component({
-    template: require("./manage.component.html")
-})
-export class EventManagePage extends Vue {
+@Component
+export class EventManagePage extends Mixins(EventManagePageTpl) {
 
     public model():Promise<any> {
         return Promise.resolve({
@@ -77,8 +76,8 @@ export class EventManagePage extends Vue {
         };
     };
 
-    public save(model):void {
-        this.places(model.location, true).then(([location]) => {
+    public save(model):Promise<any> {
+        return this.places(model.location, true).then(([location]) => {
             return {...model, location}
         }).then(model => {
             return {
@@ -96,9 +95,13 @@ export class EventManagePage extends Vue {
             }, {})
         }).then(model => {
             return RctApi.event.save(model)
-        }).then(model => {
-            console.log(model)
         })
+    };
+
+    public success({ title, id }:any):void {
+        this.$toast.success(`Event "${title}" has been saved successfully.`, [{
+            text: "View", onClick: () => this.$router.push({name: "event", params: { id }})
+        }])
     };
 
 };
