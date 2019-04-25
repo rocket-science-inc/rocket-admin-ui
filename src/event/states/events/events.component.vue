@@ -10,12 +10,19 @@
             </div>
         </div>
         <div class="flex-fill overflow-hidden">
-            <rct-table :data="events">
-                <rct-table-raw slot="rct-table-raw" slot-scope="{ item }">
-                    <rct-table-col title="Title">{{item.id}}</rct-table-col>
-                    <rct-table-col title="Organizer">{{item.id}}</rct-table-col>
-                    <rct-table-col title="Scheduled">{{item.id}}</rct-table-col>
-                </rct-table-raw>
+            <rct-table :data="events" :sorting="{name: 'asc'}">
+                <template slot-scope="{ raw }">
+                    <rct-table-cell heading="Title" sort="title">{{raw.title}}</rct-table-cell>
+                    <rct-table-cell heading="Organizer">{{raw.title}}</rct-table-cell>
+                    <rct-table-cell heading="Schedule">{{raw.title}}</rct-table-cell>
+                </template>
+                <!-- <md-table-cell>{{raw.title}}</md-table-cell>
+                <template slot-scope="{ raw }">
+                    
+                </template> -->
+                <!-- <rct-table-col heading="Title" ref="col" >
+                    {{ raw.title }}
+                </rct-table-col> -->
             </rct-table>
         </div>
     </md-content>

@@ -1,5 +1,6 @@
-import { Component, Mixins, Prop } from "vue-property-decorator";
-import RctTableTpl from "./table.component.vue"
+import { Component, Mixins, Prop, Provide } from "vue-property-decorator";
+import RctTableTpl from "./table.component.vue";
+import { RctTableVcell } from "./raw/vcell/vcell.component";
 
 interface IDataResponse {
     records: any[],
@@ -10,10 +11,25 @@ interface IDataParams {
     q?: string
 };
 
-@Component
+// @Component
+// class Vcell extends Vue {
+
+    
+
+// }
+
+@Component({
+    components: {
+        "rct-table-vcell": RctTableVcell
+    }
+})
 export class RctTable extends Mixins(RctTableTpl) {
 
     @Prop() data: (params: IDataParams) => Promise<IDataResponse>;
+    @Prop({ default: true }) showSearch: boolean;
+    @Prop({ default: {} }) sorting: any;
+
+    @Provide() rcolumn = () => this.$scopedSlots.default;
 
     public records:IDataResponse = { total: 0, records: [] };
     public query: string = "";
@@ -40,6 +56,15 @@ export class RctTable extends Mixins(RctTableTpl) {
             this.inprogress = false;
         });
     };
+
+    public get columns():any[] {
+        return this.$scopedSlots.default({ raw: {} })
+            .map((col, index) => {
+                return (({ heading, sort }:any) => ({
+                    index, heading, sort, col
+                }))((col.componentOptions || { propsData : {} }).propsData)
+            }).filter(({ heading }) => heading);
+    }
 
     public mounted():void {
         this.load();
