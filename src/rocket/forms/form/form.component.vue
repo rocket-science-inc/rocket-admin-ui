@@ -1,10 +1,10 @@
 <template>
     <div :class="{'position-relative h-100 overflow-hidden': inprogress}">
-        <div class="d-flex mb-3">
+        <div class="d-flex mb-3 align-items-center">
             <div class="md-display-1 flex-fill">{{title}}</div>
             <div class="flex-shrink-0">
-                <md-button class="md-raised">Cancel</md-button>
-                <md-button class="md-primary md-raised" @click="save">Save</md-button>
+                <md-button class="md-raised my-0">Cancel</md-button>
+                <md-button class="md-primary md-raised my-0 mr-0" @click="save">Save</md-button>
             </div>
         </div>
         <div>

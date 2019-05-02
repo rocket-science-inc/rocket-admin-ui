@@ -1,6 +1,11 @@
 import { jsonToGraphQLQuery } from "json-to-graphql-query";
 import { Graph } from "./../base.resource";
-import { SaveEvent } from "./event.queries";
+import { SaveEvent, QueryEvent } from "./event.queries";
+
+export interface IEventQueryParams {
+    page: number,
+    count: number
+};
 
 export class EventResource {
 
@@ -15,6 +20,19 @@ export class EventResource {
                 }
             })
         }).then(({data}) => data.data.createEvent || {})
+    };
+
+    public query(params:IEventQueryParams, fields: any = QueryEvent):Promise<any> {
+        return Graph.post("", {
+            query: jsonToGraphQLQuery({
+                query: {
+                    events: {
+                        ...fields,
+                        __args: { ...params }
+                    }
+                }
+            })
+        }).then(({data}) => data.data.events || {})
     };
 
 };

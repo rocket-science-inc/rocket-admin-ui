@@ -1,17 +1,20 @@
 import { Component, Mixins } from "vue-property-decorator";
 import EventsPageTpl from "./events.component.vue";
+import { RctApi } from "@rocket/api";
 
 @Component
 export class EventsPage extends Mixins(EventsPageTpl) {
 
-    public events():Promise<any> {
-        return Promise.resolve(new Array(200).fill(0).map((r, i) => {
-            return {
-                title: `Event ${i + 1}`
-            }
-        })).then(records => {
-            return { records, total: records.length }
-        })
+    private fields: any = {
+        total: true,
+        records: {
+            id: true,
+            title: true
+        }
+    };
+
+    public events({page, count}:any):Promise<any> {
+        return RctApi.event.query({page, count}, this.fields)
     };
     
 }
