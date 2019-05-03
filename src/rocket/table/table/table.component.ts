@@ -28,8 +28,6 @@ export class RctTable extends Mixins(RctTableTpl) {
     @Prop({ default: true }) showSearch: boolean;
     @Prop({ default: {} }) sorting: any;
 
-    @Provide() rcolumn = () => this.$scopedSlots.default;
-
     public inprogress: boolean = false;
 
     public total: number = 0;
@@ -41,6 +39,8 @@ export class RctTable extends Mixins(RctTableTpl) {
         records: [],
         query: ""
     };
+
+    @Provide() rcolumn = () => this.$scopedSlots.default;
 
     public search():void {
         console.log(this.table.query)
