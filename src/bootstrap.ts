@@ -1,13 +1,13 @@
 import Vue from "vue";
-import { RctFormsPlugin } from "@rocket/forms";
 import { RctShellPlugin, Shell } from "@/shell";
 import { RctEventPlugin } from "@/event";
+import { RctOrganizerPlugin } from "@/organizer";
 
 import { store } from "./store";
 import { router } from "./router";
 
-Vue.use(RctFormsPlugin);
 Vue.use(RctEventPlugin);
+Vue.use(RctOrganizerPlugin);
 
 Vue.use(RctShellPlugin, {
     navigation: [{

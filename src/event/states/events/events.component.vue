@@ -17,8 +17,14 @@
                             {{raw.title}}
                         </router-link>
                     </rct-table-cell>
-                    <rct-table-cell heading="Organizer">{{raw.title}}</rct-table-cell>
-                    <rct-table-cell heading="Schedule">{{raw.title}}</rct-table-cell>
+                    <rct-table-cell heading="Organizer">
+                        <router-link :to="{name: 'organizer', params: {id: raw.organizer}}">
+                            Organizer {{raw.organizer}}
+                        </router-link>
+                    </rct-table-cell>
+                    <rct-table-cell heading="Schedule">
+                        <span v-if="raw.time">{{raw.time.start | date('llll')}}</span>
+                    </rct-table-cell>
                 </template>
             </rct-table>
         </div>

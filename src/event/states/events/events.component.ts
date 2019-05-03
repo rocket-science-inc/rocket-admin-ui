@@ -9,7 +9,11 @@ export class EventsPage extends Mixins(EventsPageTpl) {
         total: true,
         records: {
             id: true,
-            title: true
+            title: true,
+            organizer: true,
+            time: {
+                start: true
+            }
         }
     };
 
