@@ -5,6 +5,8 @@ import { RctUiPlugin } from "@rocket/ui";
 import { RctTablePlugin } from "@rocket/table";
 import { RctI18nPlugin } from "@rocket/i18n";
 
+import { EventStore } from "./states/event/_store/event.store";
+
 Vue.use(RctToastPlugin);
 Vue.use(RctFormsPlugin);
 Vue.use(RctUiPlugin);
@@ -17,5 +19,9 @@ export class RctEventPlugin {
 
 };
 
+export const RctEventStore = {
+    event: EventStore
+};
+
 export * from "./event.routes";
-export * from "./event.store";
+// export * from "./event.store";

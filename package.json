@@ -42,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@types/angular": "^1.6.54",
     "@types/node": "^11.13.8",
     "@types/webpack-env": "^1.13.9",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
@@ -61,6 +62,7 @@
     "typescript": "^3.4.5",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
+    "vuex-class": "^0.3.2",
     "webfonts-loader": "^4.4.0",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1",
