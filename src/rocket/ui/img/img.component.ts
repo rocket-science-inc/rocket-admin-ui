@@ -17,8 +17,8 @@ export class RctImg extends Mixins(RctImgTpl) {
 
     public get source():string {
         return cloudinary.url(this.src.public_id, {
-            width: this.width,
-            height: this.height || this.width,
+            width: this.width * window.devicePixelRatio,
+            height: (this.height || this.width) * window.devicePixelRatio,
             crop: this.crop
         })
     };

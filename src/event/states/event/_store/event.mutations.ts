@@ -5,3 +5,7 @@ export const loading = (state, { payload }) => {
 export const eventLoaded = (state, { payload }) => {
     state.event = payload;
 };
+
+export const error = (state, { payload }) => {
+    state.errors = payload;
+}; 

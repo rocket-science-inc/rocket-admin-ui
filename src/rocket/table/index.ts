@@ -1,7 +1,10 @@
 import Vue from "vue";
+import { RctToastPlugin } from "@rocket/toast";
 
 import { RctTable } from "./table/table.component";
-import { RctTableCell } from "./table/raw/cell/col.component"
+import { RctTableCell } from "./table/raw/cell/col.component";
+
+Vue.use(RctToastPlugin);
 
 export class RctTablePlugin {
 

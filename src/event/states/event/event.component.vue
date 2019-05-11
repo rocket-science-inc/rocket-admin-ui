@@ -19,10 +19,10 @@
             </div>
             <div class="md-layout-item">
                 <md-tabs>
-                    <md-tab id="tab-home" md-label="Details" class="p-1">
+                    <md-tab id="details" md-label="Details" class="p-1">
                         <event-details-tab :event="event"></event-details-tab>
                     </md-tab>
-                    <md-tab id="tab-pages" md-label="Agenda">
+                    <md-tab id="agenda" md-label="Agenda" class="p-1">
                         <event-agenda-tab :agenda="event.agenda"></event-agenda-tab>
                     </md-tab>
                 </md-tabs>

@@ -74,6 +74,9 @@ export class RctTable extends Mixins(RctTableTpl) {
             this.total = total;
             this.records = records;
             this.inprogress = false;
+        }).catch(({ errors }) => {
+            this.inprogress = false;
+            errors.forEach((error) => this.$toast.error(error));
         });
     };
 

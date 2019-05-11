@@ -19,6 +19,13 @@ export const GetEvent = {
             latitude: true,
             longitude: true
         }
+    },
+    agenda: {
+        username: true,
+        company: true,
+        description: true,
+        position: true,
+        title: true
     }
 };
 

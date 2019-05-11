@@ -1,6 +1,6 @@
 import { jsonToGraphQLQuery } from "json-to-graphql-query";
-import { Graph } from "./base.resource";
-import { PlacesQuery, PlaceQuery } from "./default.queries";
+import { Resource } from "../resource";
+import { PlacesQuery, PlaceQuery } from "./google.queries";
 
 interface IPlacesParams {
     q: string
@@ -12,8 +12,8 @@ interface IPlaceParams {
 
 export class GoogleResource {
 
-    public places({ q }:IPlacesParams, fields:any = PlacesQuery):Promise<any[]> {
-        return Graph.post("", {
+    public places({ q }:IPlacesParams, fields:any = PlacesQuery):Promise<any> {
+        return Resource.request.post("", {
             query: jsonToGraphQLQuery({
                 query: {
                     findLocations: {
@@ -22,11 +22,11 @@ export class GoogleResource {
                     }
                 }
             })
-        }).then(({data}) => data.data.findLocations || [])
+        })
     };
 
     public place({ id }:IPlaceParams, fields:any = PlaceQuery):Promise<any> {
-        return Graph.post("", {
+        return Resource.request.post("", {
             query: jsonToGraphQLQuery({
                 query: {
                     findLocation: {
@@ -35,7 +35,7 @@ export class GoogleResource {
                     }
                 }
             })
-        }).then(({data}) => data.data.findLocation || [])
+        })
     };
 
 };

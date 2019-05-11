@@ -51,13 +51,13 @@ export class EventManagePage extends Mixins(EventManagePageTpl) {
     };
 
     public organizers(q:any, init:boolean):Promise<any[]> {
-        if (init) return RctApi.user.get({id: q}).then(data => [data])
-        else return RctApi.user.find({ q })
+        if (init) return RctApi.user.get({id: q}).then(({ user }) => [user])
+        else return RctApi.user.find({ q }).then(({ users }) => users)
     };
 
     public places(q:string, init:boolean):Promise<any[]> {
-        if (init) return RctApi.google.place({ id: q }).then(data => [data])
-        else return RctApi.google.places({ q })
+        if (init) return RctApi.google.place({ id: q }).then(({ findLocation }) => [findLocation])
+        else return RctApi.google.places({ q }).then(({ findLocations }) => findLocations)
     };
 
     public remove(model: any, item:string):void {
@@ -98,9 +98,9 @@ export class EventManagePage extends Mixins(EventManagePageTpl) {
         })
     };
 
-    public success({ title, id }:any):void {
-        this.$toast.success(`Event "${title}" has been saved successfully.`, [{
-            text: "View", onClick: () => this.$router.push({name: "event", params: { id }})
+    public success({ createEvent }:any):void {
+        this.$toast.success(`Event "${createEvent.title}" has been saved successfully.`, [{
+            text: "View", onClick: () => this.$router.push({name: "event", params: { id: createEvent.id }})
         }])
     };
 

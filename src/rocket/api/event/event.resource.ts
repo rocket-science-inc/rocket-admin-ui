@@ -1,5 +1,5 @@
 import { jsonToGraphQLQuery } from "json-to-graphql-query";
-import { Graph } from "./../base.resource";
+import { Resource } from "../resource";
 import { SaveEvent, QueryEvent, GetEvent } from "./event.queries";
 
 export interface IEventQueryParams {
@@ -10,7 +10,7 @@ export interface IEventQueryParams {
 export class EventResource {
 
     public get(id: string, fields: any = GetEvent):Promise<any> {
-        return Graph.post("", {
+        return Resource.request.post("", {
             query: jsonToGraphQLQuery({
                 query: {
                     event: {
@@ -19,11 +19,11 @@ export class EventResource {
                     }
                 }
             })
-        }).then(({data}) => data.data.event || {})
+        })
     };
 
     public save(event:any, fields: any = SaveEvent):Promise<any> {
-        return Graph.post("", {
+        return Resource.request.post("", {
             query: jsonToGraphQLQuery({
                 mutation: {
                     createEvent: {
@@ -32,11 +32,11 @@ export class EventResource {
                     }
                 }
             })
-        }).then(({data}) => data.data.createEvent || {})
+        })
     };
 
     public query(params:IEventQueryParams, fields: any = QueryEvent):Promise<any> {
-        return Graph.post("", {
+        return Resource.request.post("", {
             query: jsonToGraphQLQuery({
                 query: {
                     events: {
@@ -45,7 +45,7 @@ export class EventResource {
                     }
                 }
             })
-        }).then(({data}) => data.data.events || {})
+        })
     };
 
 };

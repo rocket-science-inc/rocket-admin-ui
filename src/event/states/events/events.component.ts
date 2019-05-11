@@ -19,6 +19,7 @@ export class EventsPage extends Mixins(EventsPageTpl) {
 
     public events({page, count}:any):Promise<any> {
         return RctApi.event.query({page, count}, this.fields)
+            .then(({ events }) => events)
     };
     
-}
+};

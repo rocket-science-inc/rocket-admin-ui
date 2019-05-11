@@ -1,5 +1,5 @@
-import { GoogleResource } from "./google.resource";
-import { UserResource } from "./user.resource";
+import { GoogleResource } from "./google/google.resource";
+import { UserResource } from "./user/user.resource";
 import { EventResource } from "./event/event.resource";
 
 

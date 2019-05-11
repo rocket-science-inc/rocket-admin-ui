@@ -1,4 +1,3 @@
-
 export const PlacesQuery = {
     id: true,
     address: true,
@@ -12,14 +11,4 @@ export const PlaceQuery = {
         latitude: true,
         longitude: true
     }
-};
-
-export const FindUserQuery = {
-    fullName: true,
-    id: true
-};
-
-export const GetUserQuery = {
-    fullName: true,
-    id: true
 };
