@@ -1,7 +1,7 @@
 <template>
     <md-content class="h-100">
         <rct-form
-            title="Create Event"
+            :title="$route.params.id ? 'Edit Event' : 'Create Event'"
             :inprogress="inprogress"
             :on-save="save"
             :on-save-success="success"
