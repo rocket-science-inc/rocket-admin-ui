@@ -35,6 +35,20 @@ export class EventResource {
         })
     };
 
+    public update(event:any, fields: any = SaveEvent):Promise<any> {
+        return Resource.request.post("", {
+            query: jsonToGraphQLQuery({
+                mutation: {
+                    updateEvent: {
+                        ...fields,
+                        __args: { event }
+                    }
+                }
+            })
+        })
+    };
+
+
     public query(params:IEventQueryParams, fields: any = QueryEvent):Promise<any> {
         return Resource.request.post("", {
             query: jsonToGraphQLQuery({

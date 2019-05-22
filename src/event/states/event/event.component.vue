@@ -4,7 +4,7 @@
             <div class="flex-fill md-display-1">Event: {{event.title}}</div>
             <div class="flex-shrink-0">
                 <md-button
-                    :to="{name: 'createEvent'}"
+                    :to="{name: 'editEvent', params: {id: event.id}}"
                     class="md-primary md-raised"
                 >Edit</md-button>
             </div>

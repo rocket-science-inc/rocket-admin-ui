@@ -1,5 +1,7 @@
 export const EventState = () => ({
     loading: false,
-    event: {},
+    event: {
+        organizer: {}
+    },
     errors: []
 });

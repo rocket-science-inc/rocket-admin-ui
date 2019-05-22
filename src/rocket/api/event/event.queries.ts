@@ -2,10 +2,28 @@ export const GetEvent = {
     id: true,
     title: true,
     description: true,
-    organizer: true,
     ticketLink: true,
+    organizer: {
+        id: true,
+        fullName: true
+    },
     image: {
-        public_id: true
+        bytes: true,
+        created_at: true,
+        etag: true,
+        format: true,
+        height: true,
+        original_filename: true,
+        placeholder: true,
+        public_id: true,
+        resource_type: true,
+        secure_url: true,
+        signature: true,
+        tags: true,
+        type: true,
+        url: true,
+        version: true,
+        width: true
     },
     time: {
         start: true,

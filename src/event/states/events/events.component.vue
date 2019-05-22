@@ -18,8 +18,8 @@
                         </router-link>
                     </rct-table-cell>
                     <rct-table-cell heading="Organizer">
-                        <router-link :to="{name: 'organizer', params: {id: raw.organizer}}">
-                            Organizer {{raw.organizer}}
+                        <router-link v-if="raw.organizer" :to="{name: 'organizer', params: {id: raw.organizer.id}}">
+                            {{raw.organizer.fullName}}
                         </router-link>
                     </rct-table-cell>
                     <rct-table-cell heading="Schedule">

@@ -2,16 +2,16 @@
     <md-content class="h-100">
         <rct-form
             title="Create Event"
-            :model="model"
+            :inprogress="inprogress"
             :on-save="save"
             :on-save-success="success"
         >
-            <template slot-scope={form}>
+            <template>
                 <div class="md-layout md-gutter">
                     <div class="md-layout-item" style="flex: 0 0 260px; max-width: 260px;">
                         <rct-form-img
                             label="Poster"
-                            v-model="form.image"
+                            v-model="model.image"
                         />
                     </div>
                     <div class="md-layout-item">
@@ -19,12 +19,12 @@
                             <div class="md-layout-item">
                                 <rct-form-text
                                     label="Title"
-                                    v-model="form.title"
+                                    v-model="model.title"
                                 />
                             </div>
                             <div class="md-layout-item">
                                 <rct-form-autocomplete
-                                    v-model.number="form.organizer"
+                                    v-model.number="model.organizer"
                                     label="Organizer"
                                     :options="organizers"
                                     opt-label="fullName"
@@ -38,7 +38,7 @@
                         <div class="md-layout md-gutter">
                             <div class="md-layout-item">
                                 <rct-form-autocomplete
-                                    v-model="form.location"
+                                    v-model="model.location"
                                     label="Location"
                                     opt-label="address"
                                     :options="places"
@@ -52,13 +52,13 @@
                         <div class="md-layout md-gutter">
                             <div class="md-layout-item">
                                 <rct-form-datetime-picker
-                                    v-model="form.timeStart"
+                                    v-model="model.time.start"
                                     label="Start Date and Time"
                                 />
                             </div>
                             <div class="md-layout-item">
                                 <rct-form-datetime-picker
-                                    v-model="form.timeEnd"
+                                    v-model="model.time.end"
                                     label="End Date and Time"
                                 />
                             </div>
@@ -66,7 +66,7 @@
                         <div class="md-layout md-gutter">
                             <div class="md-layout-item">
                                 <rct-form-textarea
-                                    v-model="form.ticketLink"
+                                    v-model="model.ticketLink"
                                     label="Tickets Link"
                                 />
                             </div>
@@ -74,7 +74,7 @@
                         <div class="md-layout md-gutter">
                             <div class="md-layout-item">
                                 <rct-form-textarea
-                                    v-model="form.description"
+                                    v-model="model.description"
                                     label="Description"
                                 />
                             </div>
@@ -83,14 +83,14 @@
                 </div>
                 <div class="md-headline">Agenda</div>
                 <div class="py-3">
-                    <div v-for="(value, key) in form.agenda" class="border border-dashed px-3 mb-3" :key="key">
+                    <div v-for="(value, key) in model.agenda" class="border border-dashed px-3 mb-3" :key="key">
                         <div class="md-layout md-gutter">
                             <div class="md-layout-item">
                                 <div class="md-layout md-gutter">
                                     <div class="md-layout-item">
                                         <rct-form-text
                                             label="Speaker"
-                                            v-model="form.agenda[key].username"
+                                            v-model="model.agenda[key].username"
                                         ></rct-form-text>
                                     </div>
                                 </div>  
@@ -98,13 +98,13 @@
                                     <div class="md-layout-item">
                                         <rct-form-text
                                             label="Company"
-                                            v-model="form.agenda[key].company"
+                                            v-model="model.agenda[key].company"
                                         ></rct-form-text>
                                     </div>
                                     <div class="md-layout-item">
                                         <rct-form-text
                                             label="Position"
-                                            v-model="form.agenda[key].position"
+                                            v-model="model.agenda[key].position"
                                         ></rct-form-text>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                     <div class="md-layout-item">
                                         <rct-form-text
                                             label="Topic"
-                                            v-model="form.agenda[key].title"
+                                            v-model="model.agenda[key].title"
                                         ></rct-form-text>
                                     </div>
                                 </div>
@@ -120,13 +120,13 @@
                                     <div class="md-layout-item">
                                         <rct-form-textarea
                                             label="Description"
-                                            v-model="form.agenda[key].description"
+                                            v-model="model.agenda[key].description"
                                         ></rct-form-textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="md-layout-item pt-3" style="flex: 0 0 64px">   
-                                <md-button class="md-icon-button" @click="remove(form, key)">
+                                <md-button class="md-icon-button" @click="removeReport(key)">
                                     <md-icon>close</md-icon>
                                     <md-tooltip md-direction="top">Remove</md-tooltip>
                                 </md-button>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <md-button class="md-raised mx-0" @click="add(form)">Add</md-button>
+                        <md-button class="md-raised mx-0" @click="addReport()">Add</md-button>
                     </div>
                 </div>
             </template>

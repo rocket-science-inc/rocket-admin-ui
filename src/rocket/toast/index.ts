@@ -23,7 +23,7 @@ export class RctToastPlugin {
             type: "error"
         }].reduce((res, item) => {
             return {...res, [item.type]: (message:string, actions:any[] = []) => {
-                Vue.toasted.show(message, {
+                Vue.toasted.show(message, <any>{
                     ...item,
                     duration: 5000,
                     position: "bottom-right",

@@ -15,8 +15,8 @@
                             <md-icon>contact_mail</md-icon>
                             <div class="md-list-item-text">
                                 <span>
-                                    <router-link :to="{name: 'organizer', params: {id: event.organizer}}">
-                                        Organizer {{event.organizer}}
+                                    <router-link :to="{name: 'organizer', params: {id: event.organizer.id}}">
+                                        {{event.organizer.fullName}}
                                     </router-link>
                                 </span>
                                 <span>Organizer</span>

@@ -1,53 +1,27 @@
-import { Component, Vue, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Watch } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 import { RctApi } from "@rocket/api";
 import EventManagePageTpl from "./manage.component.vue";
+
+const Store = namespace("manageEvent");
 
 @Component
 export class EventManagePage extends Mixins(EventManagePageTpl) {
 
-    public model():Promise<any> {
-        return Promise.resolve({
-            agenda: { [Date.now()]: {} }
+    @Store.Action("getEvent") getEvent: (params:any) => void;
+    @Store.Action("saveEvent") saveEvent: (params:any) => Promise<any>;
+    @Store.Action("reset") reset: () => void;
+    @Store.Action("addReport") addReport: () => void;
+    @Store.Action("removeReport") removeReport: (key:string) => void;
+    @Store.State("loading") inprogress: boolean;
+    @Store.State("model") model: any;
+    @Store.State("errors") errors: string[];
+
+    @Watch("errors")
+    public errorHandler(value:string[]):void {
+        value.forEach(error => {
+            this.$toast.error(error)
         });
-        // return Promise.resolve({
-        //     image: {
-        //         "public_id": "rhev2ns1hxrhnq3riyfq",
-        //         "version": 1555527745,
-        //         "signature": "3c15b1636fd1a2958ef5723118ddbae3c8922dec",
-        //         "width": 672,
-        //         "height": 1388,
-        //         "format": "png",
-        //         "resource_type": "image",
-        //         "created_at": "2019-04-17T19:02:25Z",
-        //         "tags": [],
-        //         "bytes": 727173,
-        //         "type": "upload",
-        //         "etag": "b06f5870a9e701ec4e2d327a4fd2ffce",
-        //         "placeholder": false,
-        //         "url": "http://res.cloudinary.com/donumx4p6/image/upload/v1555527745/rhev2ns1hxrhnq3riyfq.png",
-        //         "secure_url": "https://res.cloudinary.com/donumx4p6/image/upload/v1555527745/rhev2ns1hxrhnq3riyfq.png",
-        //         "original_filename": "Screen Shot 2019-02-13 at 12.15.28 AM"
-        //     },
-        //     title: "Title",
-        //     organizer: 1,
-        //     location: "ChIJTff_YDnP1EARKxo_61RYSjI",
-        //     timeStart: Date.now(),
-        //     timeEnd: Date.now(),
-        //     ticketLink: "http://google.com",
-        //     description: "Description",
-        //     agenda: new Array(3).fill(0).reduce((res, item, index) => {
-        //         return {
-        //             ...res,
-        //             [index]: {
-        //                 username: `Speaker ${index + 1}`,
-        //                 company: `Speaker Company ${index + 1}`,
-        //                 description: `Speach Description ${index + 1}`,
-        //                 position: `Speaker Position ${index + 1}`,
-        //                 title: `Speach Title ${index + 1}`
-        //             }
-        //         }
-        //     }, {})
-        // })
     };
 
     public organizers(q:any, init:boolean):Promise<any[]> {
@@ -69,39 +43,48 @@ export class EventManagePage extends Mixins(EventManagePageTpl) {
             }, {});
     };
 
-    public add(model:any):void {
-        model.agenda = {
-            ...model.agenda,
-            [Date.now()]: {}
-        };
-    };
-
-    public save(model):Promise<any> {
-        return this.places(model.location, true).then(([location]) => {
-            return {...model, location}
-        }).then(model => {
-            return {
-                ...model,
-                time: { start: model.timeStart, end: model.timeEnd },
-                agenda: Object.keys(model.agenda).map(key => {
-                    return model.agenda[key]
-                })
-            }
-        }).then(model => {
-            return Object.keys(model).filter(key => {
-                return ["timeStart", "timeEnd"].indexOf(key) == -1
-            }).reduce((res, key) => {
-                return {...res, [key]: model[key]}
-            }, {})
-        }).then(model => {
-            return RctApi.event.save(model)
+    public save():void {
+        this.saveEvent({
+            id: parseInt(this.$route.params.id),
+            model: JSON.parse(JSON.stringify(this.model))
+        }).then(event => {
+            this.$toast.success(`Event "${event.title}" has been saved successfully.`, [{
+                text: "View", onClick: () => this.$router.push({name: "event", params: { id: event.id }})
+            }])
         })
+        // return this.places(model.location, true).then(([location]) => {
+        //     return {...model, location}
+        // }).then(model => {
+        //     return {
+        //         ...model,
+        //         time: { start: model.timeStart, end: model.timeEnd },
+        //         agenda: Object.keys(model.agenda).map(key => {
+        //             return model.agenda[key]
+        //         })
+        //     }
+        // }).then(model => {
+        //     return Object.keys(model).filter(key => {
+        //         return ["timeStart", "timeEnd"].indexOf(key) == -1
+        //     }).reduce((res, key) => {
+        //         return {...res, [key]: model[key]}
+        //     }, {})
+        // }).then(model => {
+        //     return RctApi.event.save(model)
+        // })
     };
 
     public success({ createEvent }:any):void {
         this.$toast.success(`Event "${createEvent.title}" has been saved successfully.`, [{
             text: "View", onClick: () => this.$router.push({name: "event", params: { id: createEvent.id }})
         }])
+    };
+
+    public mounted():void {
+        this.getEvent({ id: parseInt(this.$route.params.id) })
+    };
+
+    public destroyed():void {
+        this.reset();
     };
 
 };

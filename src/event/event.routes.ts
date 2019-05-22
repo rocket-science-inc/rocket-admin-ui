@@ -20,4 +20,9 @@ export const EventRoutes:RouteConfig[] = [{
     name: "createEvent",
     component: EventManagePage,
     meta: { root: "events.all" },
+}, {
+    path: "/edit-event/:id",
+    name: "editEvent",
+    component: EventManagePage,
+    meta: { root: "events.all" },
 }]
