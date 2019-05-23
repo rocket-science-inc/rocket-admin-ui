@@ -1,4 +1,5 @@
 import Vue from "vue";
+
 import { RctShellPlugin, Shell } from "@/shell";
 import { RctEventPlugin } from "@/event";
 import { RctOrganizerPlugin } from "@/organizer";
@@ -29,7 +30,7 @@ Vue.use(RctShellPlugin, {
     }]
 });
 
-const app = new Vue({
+new Vue({
     render: (el) => el(Shell),
     store, router
 }).$mount('#app')

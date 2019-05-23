@@ -51,32 +51,11 @@ export class EventManagePage extends Mixins(EventManagePageTpl) {
             this.$toast.success(`Event "${event.title}" has been saved successfully.`, [{
                 text: "View", onClick: () => this.$router.push({name: "event", params: { id: event.id }})
             }])
-        })
-        // return this.places(model.location, true).then(([location]) => {
-        //     return {...model, location}
-        // }).then(model => {
-        //     return {
-        //         ...model,
-        //         time: { start: model.timeStart, end: model.timeEnd },
-        //         agenda: Object.keys(model.agenda).map(key => {
-        //             return model.agenda[key]
-        //         })
-        //     }
-        // }).then(model => {
-        //     return Object.keys(model).filter(key => {
-        //         return ["timeStart", "timeEnd"].indexOf(key) == -1
-        //     }).reduce((res, key) => {
-        //         return {...res, [key]: model[key]}
-        //     }, {})
-        // }).then(model => {
-        //     return RctApi.event.save(model)
-        // })
+        });
     };
 
-    public success({ createEvent }:any):void {
-        this.$toast.success(`Event "${createEvent.title}" has been saved successfully.`, [{
-            text: "View", onClick: () => this.$router.push({name: "event", params: { id: createEvent.id }})
-        }])
+    public cancel():void {
+        // this.$history.back();
     };
 
     public mounted():void {
