@@ -1,8 +1,15 @@
 export const RctBaseTemplate = (input:string):string => {
     return `
-        <md-field>
-            <label >{{label}}</label>
+        <md-field :class="{
+            'md-required': isRequired,
+            'md-invalid': isInvalid
+        }">
+            <label>{{label}}</label>
             ${input}
+            <span
+                class="md-error"
+                v-for="message in errors"
+            >{{message}}</span>
         </md-field>
     `;
 };
@@ -16,6 +23,7 @@ export const RctInputTemplate = (type:string):string => {
             :disabled="disabled"
             @input="changed"
             @change="changed"
+            v-validation="validation"
         />
     `;
 };

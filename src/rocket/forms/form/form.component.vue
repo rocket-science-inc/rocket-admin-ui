@@ -3,8 +3,12 @@
         <div class="d-flex mb-3 align-items-center">
             <div class="md-display-1 flex-fill">{{title}}</div>
             <div class="flex-shrink-0">
-                <md-button class="md-default md-raised my-0" @click="cancel">Cancel</md-button>
-                <md-button class="md-primary md-raised my-0 mr-0" @click="save">Save</md-button>
+                <md-button @click="cancel"
+                    class="md-default md-raised my-0"
+                >Cancel</md-button>
+                <md-button @click="save" :disabled="!isValid"
+                    class="md-primary md-raised my-0 mr-0"
+                >Save</md-button>
             </div>
         </div>
         <div>

@@ -22,6 +22,7 @@
                                         <rct-form-text
                                             label="Title"
                                             v-model="model.title"
+                                            :validation="{required: true}"
                                         />
                                     </div>
                                     <div class="md-layout-item">
@@ -101,6 +102,7 @@
                                                 <rct-form-text
                                                     label="Speaker"
                                                     v-model="model.agenda[key].username"
+                                                    :validation="{required: true}"
                                                 ></rct-form-text>
                                             </div>
                                         </div>  
@@ -109,12 +111,14 @@
                                                 <rct-form-text
                                                     label="Company"
                                                     v-model="model.agenda[key].company"
+                                                    :validation="{required: true}"
                                                 ></rct-form-text>
                                             </div>
                                             <div class="md-layout-item">
                                                 <rct-form-text
                                                     label="Position"
                                                     v-model="model.agenda[key].position"
+                                                    :validation="{required: true}"
                                                 ></rct-form-text>
                                             </div>
                                         </div>
@@ -123,6 +127,7 @@
                                                 <rct-form-text
                                                     label="Topic"
                                                     v-model="model.agenda[key].title"
+                                                    :validation="{required: true}"
                                                 ></rct-form-text>
                                             </div>
                                         </div>

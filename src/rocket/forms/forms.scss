@@ -1,0 +1,9 @@
+.md-field {
+    &.md-required {
+        label {
+            &:after {
+                color: red;
+            }
+        }
+    }
+}
